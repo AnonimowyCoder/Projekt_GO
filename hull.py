@@ -140,7 +140,7 @@ class Plane:  # Plane class having 3 points for a triangle
         self.distance = dotProduct(self.normal, self.pointA)
 
     def dist(self, pointX):
-        return (dotProduct(self.normal, pointX - self.pointA))
+        return dotProduct(self.normal, pointX - self.pointA)
 
     def get_edges(self):
         return [self.edge1, self.edge2, self.edge3]
@@ -182,7 +182,7 @@ def calc_horizon(visited_planes, plane, eye_point, edge_list):  # Calculating th
             neighbour = adjacent_plane(plane, edge)
             if neighbour not in visited_planes:
                 result = calc_horizon(visited_planes, neighbour, eye_point, edge_list)
-                if (result == 0):
+                if result == 0:
                     edge_list.add(edge)
 
         return 1
@@ -392,6 +392,8 @@ while any_left:
                 new_plane.calculate_to_do(temp_to_do)
 
                 list_of_planes.append(new_plane)
+
+
 
 final_vertices = set()
 for plane in list_of_planes:
